@@ -1,6 +1,7 @@
 const assert = require('assert');
 const EmployeeManager = require('../src/EmployeeManager');
 const MailerMock = require('./MailerMock');
+const ReportService = require('../src/ReportService');
 
 describe('EmployeeManager', () => {
     let dataSourceMock;
@@ -27,7 +28,7 @@ describe('EmployeeManager', () => {
     }
 
     const testSendMail = async (expected) => {
-        const manager = new EmployeeManager(mailerMock);
+        const manager = new ReportService(mailerMock);
         await manager.sendEmployeesReport(dataSourceMock);
         assert.strictEqual(mailerMock.getLastSentItem().content, expected);
 
