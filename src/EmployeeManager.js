@@ -17,19 +17,4 @@ module.exports = class EmployeeManager {
 
         return JSON.stringify(result);
     }
-
-    async getAllEmployeesAsHtml(dataSource) {
-        const employees = await this.employeeService.readEmployees(dataSource);
-        const header = '<tr><th>Employee</th><th>Position</th></tr>';
-        const tableStart = `<table>${header}`;
-        const tableEnd = '</table>';
-
-        return employees.reduce(
-            (table, employee) => table + '<tr>' +
-                `<td>${employee.firstName} ${employee.lastName}</td>` +
-                `<td>${employee.seniority} ${employee.role}</td>` +
-                '</tr>',
-            tableStart
-        ) + tableEnd;
-    }
 }
