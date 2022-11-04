@@ -7,6 +7,7 @@ module.exports = class ReportService {
     }
 
     async sendEmployeesReport(dataSource) {
+        const employees = await this.employeeService.readEmployees(dataSource);
         const to = 'abcd@gmail.com';
         const from = 'web@gmail.com';
         const host = 'localhost';
@@ -14,12 +15,11 @@ module.exports = class ReportService {
         return this.mailer.setFrom(from)
             .addRecipient(to)
             .setSubject('Employees report')
-            .setContent(await this.getAllEmployeesAsHtml(dataSource), 'text/html; charset=utf-8')
+            .setContent(await this.getAllEmployeesAsHtml(employees), 'text/html; charset=utf-8')
             .send(host);
     }
 
-    async getAllEmployeesAsHtml(dataSource) {
-        const employees = await this.employeeService.readEmployees(dataSource);
+    getAllEmployeesAsHtml(employees) {
         const header = '<tr><th>Employee</th><th>Position</th></tr>';
         const tableStart = `<table>${header}`;
         const tableEnd = '</table>';

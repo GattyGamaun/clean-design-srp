@@ -1,17 +1,15 @@
 const Employee = require("./Employee");
 const EmployeeRole = require("./EmployeeRole");
 const EmployeeSeniority = require("./EmployeeSeniority");
-const EmployeeRepository = require("./EmployeeRepository");
 
 module.exports = class EmployeeService {
     constructor() {
         this.cache = null;
-        this.employeeRepository = new EmployeeRepository();
     }
 
     async readEmployees(dataSource) {
         if (this.cache === null) {
-            const employeesData = await this.employeeRepository.readEmployees(dataSource);
+            const employeesData = await dataSource.getAllEmployees();
 
             this.cache = employeesData.map(employeeData => new Employee(
                 employeeData.FIRST_NAME,
@@ -23,6 +21,4 @@ module.exports = class EmployeeService {
 
         return this.cache;
     }
-
-
 }

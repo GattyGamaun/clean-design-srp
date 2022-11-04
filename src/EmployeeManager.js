@@ -2,7 +2,7 @@ const EmployeeService = require('./EpmloyeeService')
 
 module.exports = class EmployeeManager {
     constructor() {
-        this.employeeService = new EmployeeService
+        this.employeeService = new EmployeeService();
     }
 
     async employeesAsJson(dataSource) {
