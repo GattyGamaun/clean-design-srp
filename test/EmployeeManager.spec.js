@@ -1,5 +1,5 @@
 const assert = require('assert');
-const EmployeeManager = require('../src/EmployeeManager');
+const EmployeeSerializer = require('../src/EmployeeSerializer');
 const MailerMock = require('./MailerMock');
 const ReportService = require('../src/ReportService');
 
@@ -17,7 +17,7 @@ describe('EmployeeManager', () => {
     };
 
     const testJsonConvert = async (json) => {
-        const manager = new EmployeeManager();
+        const manager = new EmployeeSerializer();
         let serialized = await manager.employeesAsJson(dataSourceMock);
 
         assert.strictEqual(serialized, json);

@@ -2,7 +2,7 @@ const Employee = require("./Employee");
 const EmployeeRole = require("./EmployeeRole");
 const EmployeeSeniority = require("./EmployeeSeniority");
 
-module.exports = class EmployeeService {
+module.exports = class StorageService {
     constructor() {
         this.cache = null;
     }

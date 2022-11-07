@@ -1,12 +1,12 @@
-const EmployeeService = require('./EpmloyeeService')
+const StorageService = require('./StorageService')
 
-module.exports = class EmployeeManager {
+module.exports = class EmployeeSerializer {
     constructor() {
-        this.employeeService = new EmployeeService();
+        this.storageService = new StorageService();
     }
 
     async employeesAsJson(dataSource) {
-        const employees = await this.employeeService.readEmployees(dataSource);
+        const employees = await this.storageService.readEmployees(dataSource);
         const result = employees.reduce(
             (collection, employee) => Object.assign(
                 collection, {

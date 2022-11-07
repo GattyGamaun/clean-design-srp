@@ -1,4 +1,4 @@
-const EmployeeService = require('./EpmloyeeService');
+const EmployeeService = require('./StorageService');
 
 module.exports = class ReportService {
     constructor(mailer) {
